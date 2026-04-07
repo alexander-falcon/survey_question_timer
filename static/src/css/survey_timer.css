@@ -1,0 +1,16 @@
+/* Estilos para el temporizador */
+.o_survey_question_timer {
+    /* Estilos base */
+}
+
+.o_survey_question_timer .timer-warning {
+    color: #dc3545;
+    font-weight: bold;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
