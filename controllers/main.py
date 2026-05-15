@@ -5,6 +5,9 @@ from odoo.addons.survey.controllers.main import Survey
 from odoo.http import request
 from datetime import datetime
 import json
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class CustomSurvey(Survey):
     

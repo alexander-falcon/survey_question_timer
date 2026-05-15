@@ -133,7 +133,6 @@ odoo.define('survey_question_timer.survey_timer', function (require) {
         
         currentQuestionId = newQuestionId;
         var $timerValue = $timerContainer.find('.o_survey_timer_value');
-        var $timerLabel = $timerContainer.find('.o_survey_timer_label');
         var $timerIcon = $timerContainer.find('.fa-clock-o, .fa-exclamation-triangle');
 
         // Si ya no queda tiempo, mostrar expirado y enviar
