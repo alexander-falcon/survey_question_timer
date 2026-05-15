@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="survey_question_form_inherit" inherit_id="survey.question_container" name="Survey Question with Timer">
+        
+        <xpath expr="//h3" position="after">
+            <t t-if="question and question.time_limit > 0 and question.survey_id.use_question_time_limit">
+                <t t-set="question_time_limit" t-value="question.time_limit"/>
+                <input type="hidden" name="survey_question_time_limit" t-att-value="question_time_limit"/>
+                <input type="hidden" name="survey_question_start_time" t-att-value="question_start_time"/>
+
+                <div class="o_survey_timer_container alert alert-info">
+                    <i class="fa fa-clock-o"/>
+                    <span class="o_survey_timer_label">Time remaining: </span>
+                    <span class="o_survey_timer_value">00:00</span>
+                </div>
+            </t>
+        </xpath>
+        
+    </template>
+</odoo>
