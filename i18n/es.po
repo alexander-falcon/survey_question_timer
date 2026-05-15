@@ -1,0 +1,321 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* survey_question_timer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-14 17:01+0000\n"
+"PO-Revision-Date: 2026-05-14 17:01+0000\n"
+"Last-Translator: Alexander Falcon\n"
+"Language-Team: Spanish (ES)\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: survey_question_timer
+#: model_terms:ir.ui.view,arch_db:survey_question_timer.survey_question_form_inherit
+msgid ""
+"<i class=\"fa fa-clock-o\"/>\n"
+"                    <span class=\"o_survey_timer_label\">Time remaining: </span>\n"
+"                    <span class=\"o_survey_timer_value\">00:00</span>"
+msgstr ""
+"<i class=\"fa fa-clock-o\"/>\n"
+"                    <span class=\"o_survey_timer_label\">Tiempo restante: </span>\n"
+"                    <span class=\"o_survey_timer_value\">00:00</span>"
+
+#. module: survey_question_timer
+#: model:ir.model.fields,field_description:survey_question_timer.field_survey_question_start_time__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: survey_question_timer
+#: model:ir.model.fields,field_description:survey_question_timer.field_survey_question_start_time__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: survey_question_timer
+#: model:ir.model.fields,field_description:survey_question_timer.field_survey_question_start_time__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: survey_question_timer
+#: model:ir.model.fields,help:survey_question_timer.field_survey_survey__use_question_time_limit
+msgid ""
+"Enable individual timer for each question.\n"
+"        - Only works with pagination: 'One page per question'\n"
+"        - Requires 'Allow roaming' to be disabled\n"
+"        - Global time limit must be disabled\n"
+"        - Each question must have a time greater than 0"
+msgstr ""
+"Activa el temporizador individual para cada pregunta.\n"
+"        - Solo funciona con paginación: 'Una pregunta por página'\n"
+"        - Requiere que 'Permitir roaming' esté desactivado\n"
+"        - El límite de tiempo global debe estar desactivado\n"
+"        - Cada pregunta debe tener un tiempo mayor que 0"
+
+#. module: survey_question_timer
+#: model:ir.model.fields,field_description:survey_question_timer.field_survey_question_start_time__id
+msgid "ID"
+msgstr "ID"
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey_question.py:0
+#, python-format
+msgid "Invalid Configuration"
+msgstr "Configuración inválida"
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey_question.py:0
+#, python-format
+msgid "Invalid Value"
+msgstr "Valor inválido"
+
+#. module: survey_question_timer
+#: model:ir.model.fields,field_description:survey_question_timer.field_survey_question_start_time____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: survey_question_timer
+#: model:ir.model.fields,field_description:survey_question_timer.field_survey_question_start_time__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: survey_question_timer
+#: model:ir.model.fields,field_description:survey_question_timer.field_survey_question_start_time__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey_question.py:0
+#, python-format
+msgid "Maximum Limit"
+msgstr "Límite máximo"
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey_question.py:0
+#, python-format
+msgid "Minimum Limit"
+msgstr "Límite mínimo"
+
+#. module: survey_question_timer
+#: model:ir.model.fields,field_description:survey_question_timer.field_survey_question_start_time__question_id
+msgid "Question"
+msgstr "Pregunta"
+
+#. module: survey_question_timer
+#: model:ir.model,name:survey_question_timer.model_survey_question_start_time
+msgid "Question Start Time"
+msgstr "Tiempo de inicio de pregunta"
+
+#. module: survey_question_timer
+#: model_terms:ir.ui.view,arch_db:survey_question_timer.survey_survey_form_view_inherit
+msgid "Question Time Limit"
+msgstr "Límite de tiempo por pregunta"
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey_question.py:0
+#, python-format
+msgid ""
+"Questions with a time limit cannot be mandatory.\n"
+"Question: '%(question_title)s'\n"
+"Please remove the time limit or uncheck 'Mandatory answer'."
+msgstr ""
+"Las preguntas con límite de tiempo no pueden ser obligatorias.\n"
+"Pregunta: '%(question_title)s'\n"
+"Por favor, elimine el límite de tiempo o desmarque 'Respuesta obligatoria'."
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey_question.py:0
+#, python-format
+msgid ""
+"Questions with a time limit cannot be mandatory. The time limit has been "
+"removed."
+msgstr ""
+"Las preguntas con límite de tiempo no pueden ser obligatorias. El límite de "
+"tiempo ha sido eliminado."
+
+#. module: survey_question_timer
+#: model:ir.model.fields,help:survey_question_timer.field_survey_question__time_limit
+msgid ""
+"Set a time limit in seconds for this question.\n"
+"        - 0 means no time limit\n"
+"        - Default: 10 seconds\n"
+"        - Minimum: 3 seconds\n"
+"        - Maximum: 120 seconds (2 minutes)\n"
+"        - Only works when survey has: 'One page per question', 'Allow roaming' disabled, and no global time limit\n"
+"        - Mandatory questions cannot have a time limit"
+msgstr ""
+"Establece un tiempo límite en segundos para esta pregunta.\n"
+"        - 0 significa sin límite de tiempo\n"
+"        - Por defecto: 10 segundos\n"
+"        - Mínimo: 3 segundos\n"
+"        - Máximo: 120 segundos (2 minutos)\n"
+"        - Solo funciona con: 'Una pregunta por página', 'Permitir roaming' desactivado y sin límite de tiempo global\n"
+"        - Las preguntas obligatorias no pueden tener límite de tiempo"
+
+#. module: survey_question_timer
+#: model:ir.model.fields,field_description:survey_question_timer.field_survey_question_start_time__start_time
+msgid "Start Time"
+msgstr "Tiempo de inicio"
+
+#. module: survey_question_timer
+#: model:ir.model,name:survey_question_timer.model_survey_survey
+msgid "Survey"
+msgstr "Encuesta"
+
+#. module: survey_question_timer
+#: model:ir.model,name:survey_question_timer.model_survey_question
+msgid "Survey Question"
+msgstr "Pregunta de encuesta"
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey_question.py:0
+#, python-format
+msgid ""
+"The maximum time limit is 120 seconds (2 minutes).\n"
+"Question: '%(question_title)s'\n"
+"Please set a value between 3 and 120 seconds."
+msgstr ""
+"El límite de tiempo máximo es 120 segundos (2 minutos).\n"
+"Pregunta: '%(question_title)s'\n"
+"Por favor, establezca un valor entre 3 y 120 segundos."
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey_question.py:0
+#, python-format
+msgid ""
+"The maximum time limit is 120 seconds (2 minutes). It has been adjusted to "
+"120."
+msgstr ""
+"El límite de tiempo máximo es 120 segundos (2 minutos). Se ha ajustado a "
+"120."
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey_question.py:0
+#, python-format
+msgid ""
+"The minimum time limit is 3 seconds.\n"
+"Question: '%(question_title)s'\n"
+"Please set 0 (no limit) or at least 3 seconds."
+msgstr ""
+"El límite de tiempo mínimo es 3 segundos.\n"
+"Pregunta: '%(question_title)s'\n"
+"Por favor, establezca 0 (sin límite) o al menos 3 segundos."
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey_question.py:0
+#, python-format
+msgid "The minimum time limit is 3 seconds. It has been set to 3 seconds."
+msgstr "El límite de tiempo mínimo es 3 segundos. Se ha establecido a 3 segundos."
+
+#. module: survey_question_timer
+#: model:ir.model.fields,field_description:survey_question_timer.field_survey_question__time_limit
+msgid "Time Limit (seconds)"
+msgstr "Tiempo límite (segundos)"
+
+#. module: survey_question_timer
+#: model_terms:ir.ui.view,arch_db:survey_question_timer.survey_question_form_view_inherit
+msgid "Time Settings"
+msgstr "Configuración de tiempo"
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey_question.py:0
+#, python-format
+msgid ""
+"Time limit cannot be negative.\n"
+"Question: '%(question_title)s'"
+msgstr ""
+"El límite de tiempo no puede ser negativo.\n"
+"Pregunta: '%(question_title)s'"
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey_question.py:0
+#, python-format
+msgid "Time limit cannot be negative. It has been set to 0 (no limit)."
+msgstr "El límite de tiempo no puede ser negativo. Se ha establecido a 0 (sin límite)."
+
+#. module: survey_question_timer
+#. odoo-javascript
+#: code:addons/survey_question_timer/static/src/js/survey_timer.js:0
+#, python-format
+msgid "Time remaining: "
+msgstr "Tiempo restante: "
+
+#. module: survey_question_timer
+#. odoo-javascript
+#: code:addons/survey_question_timer/static/src/js/survey_timer.js:0
+#: code:addons/survey_question_timer/static/src/js/survey_timer.js:0
+#, python-format
+msgid "Time's up! "
+msgstr "¡Tiempo agotado! "
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey.py:0
+#, python-format
+msgid ""
+"To use question time limits, ALL questions must have a time greater than 0 configured.\n"
+"Please review the questions and assign a time to each one."
+msgstr ""
+"Para usar el límite de tiempo por pregunta, TODAS las preguntas deben tener "
+"configurado un tiempo mayor que 0.\n"
+"Por favor, revise las preguntas y asigne un tiempo a cada una."
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey.py:0
+#, python-format
+msgid ""
+"To use question time limits, pagination must be set to 'One page per question'.\n"
+"Please change the 'Pagination' setting in the survey configuration."
+msgstr ""
+"Para usar el límite de tiempo por pregunta, la paginación debe ser 'Una pregunta por página'.\n"
+"Por favor, cambie la configuración de 'Paginación' en la encuesta."
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey.py:0
+#, python-format
+msgid ""
+"To use question time limits, the global survey time limit must be disabled.\n"
+"Please uncheck 'Time limit' in the survey configuration."
+msgstr ""
+"Para usar el límite de tiempo por pregunta, el límite de tiempo global debe estar desactivado.\n"
+"Por favor, desmarque 'Límite de tiempo' en la encuesta."
+
+#. module: survey_question_timer
+#. odoo-python
+#: code:addons/survey_question_timer/models/survey.py:0
+#, python-format
+msgid ""
+"To use question time limits, users cannot go back to previous questions.\n"
+"Please disable the 'Allow roaming' option in the survey configuration."
+msgstr ""
+"Para usar el límite de tiempo por pregunta, los usuarios no pueden volver atrás.\n"
+"Por favor, desactive la opción 'Permitir roaming' en la encuesta."
+
+#. module: survey_question_timer
+#: model:ir.model.fields,field_description:survey_question_timer.field_survey_survey__use_question_time_limit
+msgid "Use Question Time Limit"
+msgstr "Usar límite de tiempo por pregunta"
+
+#. module: survey_question_timer
+#: model:ir.model.fields,field_description:survey_question_timer.field_survey_question_start_time__user_input_id
+msgid "User Input"
+msgstr "Respuesta de usuario"
