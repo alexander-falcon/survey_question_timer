@@ -23,8 +23,9 @@
     'depends': ['survey'],
     'data': [
         'security/ir.model.access.csv',
-        #'views/survey_views.xml',
-        #'views/survey_question_views.xml',
+        'views/survey_views.xml',
+        'views/survey_question_views.xml',
+        'views/survey_templates.xml',
     ],
     'assets': {
         'web.assets_frontend': [
