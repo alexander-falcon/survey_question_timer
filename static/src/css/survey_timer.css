@@ -1,16 +1,17 @@
-/* Estilos para el temporizador */
-.o_survey_question_timer {
-    /* Estilos base */
+.o_survey_timer_container {
+    font-size: 1.2em;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
 }
 
-.o_survey_question_timer .timer-warning {
-    color: #dc3545;
+.o_survey_timer_container .fa {
+    margin-right: 8px;
+}
+
+.o_survey_timer_container .o_survey_timer_value {
     font-weight: bold;
-    animation: pulse 1s infinite;
-}
-
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
+    font-family: monospace;
+    font-size: 1.3em;
+    margin-left: 5px;
 }
