@@ -44,7 +44,7 @@ class CustomSurvey(Survey):
                     elapsed = 0
 
                 data['question_start_time'] = start_time
-                data['question_elapsed'] = elapsed
+                data['question_elapsed'] = str(elapsed)
         
         return data
 
