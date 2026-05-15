@@ -115,14 +115,12 @@ odoo.define('survey_question_timer.survey_timer', function (require) {
             return;
         }
         
-        // Calcular tiempo restante basado en el start_time del servidor (si existe)
-        var $startTimeInput = $('input[name="survey_question_start_time"]');
+        // Calcular tiempo restante usando elapsed del servidor (más fiable)
+        var $elapsedInput = $('input[name="survey_question_elapsed"]');
         var remaining;
-        if ($startTimeInput.length && $startTimeInput.val()) {
-            var serverStartTime = new Date($startTimeInput.val() + 'Z').getTime();
-            var now = new Date().getTime();
-            var elapsed = Math.floor((now - serverStartTime) / 1000);
-            remaining = Math.max(0, timeLimit - elapsed);
+        if ($elapsedInput.length && $elapsedInput.val() !== '') {
+            var serverElapsed = parseInt($elapsedInput.val(), 10);
+            remaining = Math.max(0, timeLimit - serverElapsed);
         } else {
             remaining = timeLimit;
         }

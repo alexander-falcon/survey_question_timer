@@ -29,6 +29,7 @@ class CustomSurvey(Survey):
                 
                 if start_record:
                     start_time = start_record.start_time.isoformat()
+                    elapsed = int((datetime.now() - start_record.start_time).total_seconds())
                 else:
                     start_time = datetime.now()
                     request.env['survey.question.start.time'].sudo().create({
@@ -37,8 +38,10 @@ class CustomSurvey(Survey):
                         'start_time': start_time,
                     })
                     start_time = start_time.isoformat()
-                
+                    elapsed = 0
+
                 data['question_start_time'] = start_time
+                data['question_elapsed'] = elapsed
         
         return data
 

@@ -7,6 +7,7 @@
                 <t t-set="question_time_limit" t-value="question.time_limit"/>
                 <input type="hidden" name="survey_question_time_limit" t-att-value="question_time_limit"/>
                 <input type="hidden" name="survey_question_start_time" t-att-value="question_start_time"/>
+                <input type="hidden" name="survey_question_elapsed" t-att-value="question_elapsed"/>
 
                 <div class="o_survey_timer_container alert alert-info">
                     <i class="fa fa-clock-o"/>
