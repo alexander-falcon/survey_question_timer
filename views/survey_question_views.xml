@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Heredar la vista del formulario de preguntas -->
     <record id="survey_question_form_view_inherit" model="ir.ui.view">
         <field name="name">survey.question.form.inherit</field>
         <field name="model">survey.question</field>
-        <field name="inherit_id" ref="survey.survey_question_form_view"/>
+        <field name="inherit_id" ref="survey.survey_question_form"/>
         <field name="arch" type="xml">
-            <!-- Aquí irán las modificaciones de la vista -->
+            
+            <xpath expr="//notebook/page[@name='options']" position="inside">
+                <group string="Time Settings">
+                    <field name="time_limit"/>
+                </group>
+            </xpath>
+            
         </field>
     </record>
 </odoo>
