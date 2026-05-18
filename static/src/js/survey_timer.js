@@ -16,6 +16,7 @@ odoo.define('survey_question_timer.survey_timer', function (require) {
         }
         currentQuestionId = null;
         isTimeout = false;
+        $('body').removeClass('o_survey_has_timer');
     }
 
     function ensureAnswerSelected() {
@@ -130,6 +131,8 @@ odoo.define('survey_question_timer.survey_timer', function (require) {
             $timerContainer = $('.o_survey_timer_container').last();
         }
         if (!$timerContainer.length) return;
+
+        $('body').addClass('o_survey_has_timer');
         
         currentQuestionId = newQuestionId;
         var $timerValue = $timerContainer.find('.o_survey_timer_value');

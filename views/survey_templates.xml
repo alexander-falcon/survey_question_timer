@@ -9,7 +9,7 @@
                 <input type="hidden" name="survey_question_start_time" t-att-value="question_start_time"/>
                 <input type="hidden" name="survey_question_elapsed" t-att-value="question_elapsed"/>
 
-                <div class="o_survey_timer_container alert alert-info">
+                <div class="o_survey_timer_container alert alert-info" style="position: fixed; top: 70px; right: 20px; z-index: 1000;">
                     <i class="fa fa-clock-o"/>
                     <span class="o_survey_timer_label">Time remaining: </span>
                     <span class="o_survey_timer_value">00:00</span>

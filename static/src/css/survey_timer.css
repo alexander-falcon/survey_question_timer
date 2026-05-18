@@ -15,3 +15,14 @@
     font-size: 1.3em;
     margin-left: 5px;
 }
+
+body.o_survey_has_timer .o_survey_progress_wrapper {
+    position: fixed;
+    top: 130px;
+    right: 20px;
+    z-index: 1000;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
