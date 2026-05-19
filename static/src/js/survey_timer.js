@@ -8,6 +8,7 @@ odoo.define('survey_question_timer.survey_timer', function (require) {
     var observer = null;
     var isFinished = false;
     var isTimeout = false;
+    var isFocusMonitoring = false;
 
     function resetTimer() {
         if (timerInterval) {
@@ -203,22 +204,235 @@ odoo.define('survey_question_timer.survey_timer', function (require) {
         }, 1000);
     }
 
+    function addAntiCopyProtection() {
+        // Bloquear clic derecho
+        $(document).on('contextmenu', '.o_survey_form, .o_survey_question', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Bloquear selección de texto
+        $(document).on('selectstart', '.o_survey_form, .o_survey_question', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Bloquear Ctrl+C, Ctrl+X, Ctrl+U, F12
+        $(document).on('keydown', function(e) {
+            // Ctrl+C, Ctrl+X, Ctrl+U
+            if ((e.ctrlKey || e.metaKey) && 
+                (e.keyCode === 67 || e.keyCode === 88 || e.keyCode === 85)) {
+                e.preventDefault();
+                return false;
+            }
+            // F12 (DevTools)
+            if (e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+Shift+I / Cmd+Shift+I (DevTools)
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 73) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+Shift+J / Cmd+Shift+J (Console)
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 74) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+Shift+C / Cmd+Shift+C (Inspect element)
+            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.keyCode === 67) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Bloquear arrastre de elementos
+        $(document).on('dragstart', '.o_survey_form, .o_survey_question', function(e) {
+            e.preventDefault();
+            return false;
+        });
+    }
+
+    function addDevToolsDetection() {
+        var devToolsOpen = false;
+        var threshold = 160;
+        
+        setInterval(function() {
+            var widthThreshold = window.outerWidth - window.innerWidth > threshold;
+            var heightThreshold = window.outerHeight - window.innerHeight > threshold;
+            
+            if (widthThreshold || heightThreshold) {
+                if (!devToolsOpen) {
+                    devToolsOpen = true;
+                    console.clear();
+                    console.log('%c⚠️ Advertencia de seguridad', 'color: red; font-size: 30px;');
+                    console.log('%cLas herramientas de desarrollador están desactivadas para esta encuesta.', 'font-size: 16px;');
+                }
+            } else {
+                devToolsOpen = false;
+            }
+        }, 1000);
+    }
+
+    function addWatermark() {
+        // Obtener datos del usuario desde el DOM de Odoo
+        var userName = '';
+        var userEmail = '';
+        
+        // Intentar obtener nombre de usuario (Odoo suele tener estos elementos)
+        var $userName = $('.o_user_name, .user-name, .nav-item .o_user_menu .dropdown-toggle');
+        if ($userName.length) {
+            userName = $userName.first().text().trim();
+        }
+        
+        // Intentar obtener email
+        var $userEmail = $('input[name="partner_email"], .partner-email');
+        if ($userEmail.length) {
+            userEmail = $userEmail.val() || $userEmail.text().trim();
+        }
+        
+        // Si no se encuentra, usar datos genéricos
+        if (!userName) {
+            userName = 'Usuario';
+        }
+        
+        var now = new Date();
+        var dateStr = now.toLocaleDateString('es-ES') + ' ' + now.toLocaleTimeString('es-ES');
+        
+        // Crear elemento de marca de agua
+        var $watermark = $('<div>')
+            .attr('id', 'survey-watermark')
+            .css({
+                'position': 'fixed',
+                'top': '0',
+                'left': '0',
+                'width': '100%',
+                'height': '100%',
+                'pointer-events': 'none',
+                'z-index': '9998',
+                'display': 'flex',
+                'align-items': 'center',
+                'justify-content': 'center',
+                'opacity': '0.04',
+                'font-size': '20px',
+                'color': '#000000',
+                'font-family': 'Arial, sans-serif',
+                'white-space': 'pre-line',
+                'text-align': 'center',
+                'transform': 'rotate(-25deg)',
+                'overflow': 'hidden',
+                'user-select': 'none',
+                '-webkit-user-select': 'none'
+            });
+        
+        // Construir texto de marca de agua (repetido para cubrir pantalla)
+        var watermarkText = userName;
+        if (userEmail) {
+            watermarkText += ' | ' + userEmail;
+        }
+        watermarkText += ' | ' + dateStr;
+        
+        // Repetir el texto para cubrir mejor la pantalla
+        var repeatedText = '';
+        for (var i = 0; i < 20; i++) {
+            repeatedText += watermarkText + '          ';
+        }
+        
+        $watermark.text(repeatedText);
+        
+        // Eliminar marca anterior si existe
+        $('#survey-watermark').remove();
+        
+        // Agregar al body
+        $('body').append($watermark);
+    }
+
+    function startBlurProtection() {
+        if (isFocusMonitoring) return;
+        isFocusMonitoring = true;
+        
+        // Crear capa de desenfoque (oculta inicialmente)
+        var $blurOverlay = $('<div>')
+            .attr('id', 'survey-blur-overlay')
+            .css({
+                'position': 'fixed',
+                'top': '0',
+                'left': '0',
+                'width': '100%',
+                'height': '100%',
+                'background': 'rgba(0, 0, 0, 0.3)',
+                'backdrop-filter': 'blur(20px)',
+                '-webkit-backdrop-filter': 'blur(20px)',
+                'z-index': '9999',
+                'display': 'none',
+                'pointer-events': 'none'
+            });
+        
+        // Eliminar capa anterior si existe
+        $('#survey-blur-overlay').remove();
+        $('body').append($blurOverlay);
+        
+        function showBlur() {
+            if (isFinished) return;
+            $('#survey-blur-overlay').fadeIn(200);
+        }
+        
+        function hideBlur() {
+            $('#survey-blur-overlay').fadeOut(200);
+        }
+        
+        // Detectar cuando la ventana pierde el foco
+        $(window).on('blur.surveyBlur', function() {
+            showBlur();
+        });
+        
+        // Detectar cuando la ventana recupera el foco
+        $(window).on('focus.surveyBlur', function() {
+            hideBlur();
+        });
+        
+        // Detectar visibilidad de la pestaña
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                showBlur();
+            } else {
+                hideBlur();
+            }
+        });
+    }
+
+    function stopBlurProtection() {
+        isFocusMonitoring = false;
+        $('#survey-blur-overlay').remove();
+        $(window).off('blur.surveyBlur focus.surveyBlur');
+    }
+
     var SurveyTimer = publicWidget.Widget.extend({
         selector: '.o_survey_form_content',
         
         start: function () {
             this._super.apply(this, arguments);
             setTimeout(startTimer, 300);
+            addAntiCopyProtection();
+            addDevToolsDetection();
+            addWatermark();
+            startBlurProtection();
         },
         
         destroy: function () {
             resetTimer();
+            stopBlurProtection();
             this._super.apply(this, arguments);
         }
     });
 
     $(document).ready(function () {
         setTimeout(startTimer, 500);
+
+        addAntiCopyProtection();
+        addDevToolsDetection();
+        addWatermark();
         
         observer = new MutationObserver(function (mutations) {
             if (isFinished) {
@@ -228,6 +442,7 @@ odoo.define('survey_question_timer.survey_timer', function (require) {
             if ($('.o_survey_finished').length || $('.o_survey_fill_form_done').length) {
                 isFinished = true;
                 resetTimer();
+                stopBlurProtection();
                 observer.disconnect();
                 return;
             }

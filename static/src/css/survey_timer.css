@@ -26,3 +26,35 @@ body.o_survey_has_timer .o_survey_progress_wrapper {
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
+
+.o_survey_form,
+.o_survey_question,
+.o_survey_question_text,
+.question-text,
+.survey-question-text,
+.js_question-wrapper,
+.o_survey_form_content {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+.o_survey_form input[type="text"],
+.o_survey_form textarea,
+.o_survey_form .o_survey_form_choice label {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}
+
+@media print {
+    .o_survey_form,
+    .o_survey_question,
+    .o_survey_form_content {
+        display: none !important;
+    }
+}
